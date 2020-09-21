@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="col" >
+        <div *ngFor="let post of posts" (click)="PostClicked()"style="width: 40rem;" class="card mt-2">
+            <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
+                <p class="card-text">{{post.text}}</p>
+            </div>
+        </div>
+    </div>
+</div>
