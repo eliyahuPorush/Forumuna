@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from 'src/app/services/post.service';
+
 
 @Component({
   selector: 'app-forums-list',
@@ -6,15 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forums-list.component.css']
 })
 export class ForumsListComponent implements OnInit {
-  posts = [
-    {title: 'first post', text: 'post text...'},
-    {title: 'secend post', text: 'post text...'},
-    {title: 'third post', text: 'post text...'},
-    {title: 'forth post',  text: 'post text...'}
-  ]
-  constructor() { }
+  posts ;
+  constructor(private postsSRV: PostService) { }
 
   ngOnInit(): void {
+    this.postsSRV.getPosts().subscribe(posts => {
+      this.posts = posts
+    })
   }
   PostClicked(){}
 
