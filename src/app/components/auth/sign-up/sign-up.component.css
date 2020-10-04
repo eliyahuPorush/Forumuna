@@ -11,3 +11,12 @@
  .welcome{
     text-align: center;
     } 
+
+    .ng-touched.ng-invalid.form-control{
+        border: 1px solid rgb(236, 157, 157);
+    }
+    .input-error{
+        height: 4vh;
+        display: flex ;
+        align-items: center;
+    }

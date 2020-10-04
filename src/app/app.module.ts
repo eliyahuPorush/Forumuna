@@ -10,6 +10,8 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { SignUPComponent } from './components/auth/sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { UserInfoComponent } from './components/main-page/user-info/user-info.component';
+import { ForumPageComponent } from './components/main-page/forum-page/forum-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     ForumsListComponent,
     MainPageComponent,
     LoginComponent,
-    SignUPComponent
+    SignUPComponent,
+    UserInfoComponent,
+    ForumPageComponent
   ],
   imports: [
     BrowserModule,

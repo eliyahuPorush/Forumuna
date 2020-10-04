@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a href="#" class="navbar-brand">{{brand}}</a>
-    <a [routerLink]="['signUp']" class="nav-link">Sign Up</a>
-    <a [routerLink]="['login']" class="nav-link">Login</a>
+    <a *ngIf="!user" [routerLink]="['/signUp']" class="nav-link">Sign Up</a>
+    <a *ngIf="!user" [routerLink]="['/login']" class="nav-link">Login</a>
     <a href="#" class="nav-link">About</a>
     <a href="#" class="nav-link">Contact Us</a>
 </nav>

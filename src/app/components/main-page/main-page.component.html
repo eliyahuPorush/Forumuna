@@ -1,5 +1,13 @@
     <app-header></app-header>
-
-<div class="body">
-    <app-forums-list></app-forums-list>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-9">
+            <router-outlet></router-outlet>
+            <!-- <app-forums-list></app-forums-list> -->
+        </div>
+        
+        <div class="col-3 mt-2 user-info">
+            <app-user-info></app-user-info>
+        </div>
+    </div>
 </div>

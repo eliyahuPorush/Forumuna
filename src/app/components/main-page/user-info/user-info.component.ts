@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-user-info',
+  templateUrl: './user-info.component.html',
+  styleUrls: ['./user-info.component.css']
 })
-export class HeaderComponent implements OnInit {
-  brand = environment.brand ;
+export class UserInfoComponent implements OnInit {
   user: User ;
   constructor(
     private authSRV: AuthService
@@ -17,7 +15,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.authSRV.user.subscribe(user => {this.user = user})
-    
-  }
 
+  }
+  userLogout(){
+    this.authSRV.logout() ;
+  }
 }
