@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup ;
   errorMessage ;
   helloMessage ;
+  spinner: boolean = false ;
   constructor(
     private router: Router,
     private authSRV: AuthService
@@ -30,16 +31,19 @@ export class LoginComponent implements OnInit {
   // need to navigate to forum list after user logs in
   // need to add validation
   onSubmit(){
-    if(this.loginForm.valid){
-      this.authSRV.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value).subscribe(
-        user => { this.router.navigate([''])}
-      )}
-    else{
-      this.errorMessage = 'one of the fields is not valid... please try again' ;
-    }
+    this.spinner = true ;
+    setTimeout(() => {
+      if(this.loginForm.valid){
+        this.authSRV.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value).subscribe(
+          user => { this.router.navigate([''])}
+        )}
+      else{
+        this.errorMessage = 'one of the fields is not valid... please try again' ;
+      }
+    }, 2000)
 
   }
   loginWithGoogle(){}
-  onCreateAccount(){ this.router.navigate(['signUp'])}
+  onCreateAccount(){ this.router.navigate(['main/signUp'])}
 
 }

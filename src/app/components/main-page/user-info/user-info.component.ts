@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserInfoComponent implements OnInit {
   user: User ;
+  spinner: boolean = false ;
   constructor(
     private authSRV: AuthService
   ) { }
@@ -18,6 +20,11 @@ export class UserInfoComponent implements OnInit {
 
   }
   userLogout(){
-    this.authSRV.logout() ;
+    this.spinner = true ;
+    setTimeout(() => {
+      this.authSRV.logout() ;
+      this.spinner = false ;
+    }, 3000)
   }
+
 }

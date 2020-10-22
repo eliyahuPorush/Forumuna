@@ -12,6 +12,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserInfoComponent } from './components/main-page/user-info/user-info.component';
 import { ForumPageComponent } from './components/main-page/forum-page/forum-page.component';
+import { EditForumComponent } from './components/main-page/edit-forum/edit-forum.component';
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { AboutComponent } from './components/main-page/header/about/about.component'
+import { ContactComponent } from './components/main-page/header/contact/contact.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,12 @@ import { ForumPageComponent } from './components/main-page/forum-page/forum-page
     LoginComponent,
     SignUPComponent,
     UserInfoComponent,
-    ForumPageComponent
+    ForumPageComponent,
+    EditForumComponent,
+    UserDashboardComponent,
+    AboutComponent,
+    ContactComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

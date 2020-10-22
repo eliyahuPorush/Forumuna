@@ -4,3 +4,15 @@
 .user-name{
     width: 10vw ;
 }
+.navbar{
+    background-color: rgb(53, 108, 121);
+}
+.nav-link{
+    color: white;
+}
+.nav-link:hover{
+    color: black;
+}
+a{
+    cursor: pointer;
+}

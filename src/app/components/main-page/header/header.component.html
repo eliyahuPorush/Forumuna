@@ -1,7 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a href="#" class="navbar-brand">{{brand}}</a>
-    <a *ngIf="!user" [routerLink]="['/signUp']" class="nav-link">Sign Up</a>
-    <a *ngIf="!user" [routerLink]="['/login']" class="nav-link">Login</a>
-    <a href="#" class="nav-link">About</a>
-    <a href="#" class="nav-link">Contact Us</a>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a href="#" class="navbar-brand text-white">{{brand}}</a>
+    <a [routerLink]="['about']" class="nav-link">About Us</a>
+    <a href="#" [routerLink]="['contact']" class="nav-link mr-2">Contact Us</a>
+    <a *ngIf="!user" [routerLink]="['login']" class="nav-link">Login</a>
+    <a *ngIf="!user" [routerLink]="['signUp']" class="nav-link">Sign Up</a>
+    <a *ngIf="user" (click)="onLogout()" class="nav-link">Log Out</a>
+    <app-spinner *ngIf="spinner"></app-spinner>
+    <!-- <div *ngIf="!user" class="alert alert-warning">You just logout, Hope to see you again... </div> -->
 </nav>

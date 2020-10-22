@@ -12,6 +12,7 @@ export class SignUPComponent implements OnInit {
   brand = environment.brand ;
   createAccountForm: FormGroup ;
   errorMessage ;
+  spinner : boolean = false ;
   constructor(
     private authSRV: AuthService
   ) { }
@@ -33,7 +34,10 @@ export class SignUPComponent implements OnInit {
     ){
       let form = this.createAccountForm.controls ;
       let alies = this.createAccountForm.controls.alies.value == '' ? 'default': this.createAccountForm.controls.alies.value ;
-      this.authSRV.signup(form.name.value, form.email.value, form.password.value, form.passwordConfirm.value, alies) ;
+      this.spinner = true ;
+      setTimeout(() => {
+        this.authSRV.signup(form.name.value, form.email.value, form.password.value, form.passwordConfirm.value, alies) ;
+      }, 2500)
     }
     else{
       this.errorMessage = 'One of your details is incorrect!' ;
