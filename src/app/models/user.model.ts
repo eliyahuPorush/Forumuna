@@ -3,4 +3,5 @@ export class User{
     email:string;
     date_of_joined: string;
     id: number ;
+    alies ;
 }

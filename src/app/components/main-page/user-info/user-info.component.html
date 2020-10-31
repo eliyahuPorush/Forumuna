@@ -2,7 +2,7 @@
     <div class="card bg-light user-details">
         <img 
             class="card-img-top" 
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSdxNKplD7D4F45FkdqbCWmFcYKor0bQigj6w&usqp=CAU"
+            src="http://localhost:3001/users/getPosts"
         >
         <div class="ml-2 card-title">
             <h2>Welcome Back {{user.name}}</h2>
@@ -12,6 +12,7 @@
             <button class="btn btn-outline-secondary btn-sm mr-1" [routerLink]="['/login']" (click)="userLogout()">Log Out</button>
             <button class="btn btn-outline-success btn-sm mr-1"  [routerLink]="['add_new_forum']">Add New Post</button>
             <button class="btn btn-outline-info btn-sm" [routerLink]="['usersPosts']">My Posts</button>
+            <button class="btn btn-outline-success btn-sm" [routerLink]="['profile']">My Profile</button>
         </div>
     </div>
     <app-spinner *ngIf="spinner"></app-spinner>

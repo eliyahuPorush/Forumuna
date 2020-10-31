@@ -52,8 +52,8 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="alies">image URL</label>
-    <input type="url" formControlName="alies" class="form-control">
+    <label for="alies">image</label>
+    <input type="file" #fileUpload formControlName="image" (change)="onLoadImg($event)" class="form-control-file">
 </div>
 <div *ngIf="errorMessage" class="form-group">
     <div class="alert alert-danger">{{errorMessage}}</div>

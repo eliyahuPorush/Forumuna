@@ -27,15 +27,27 @@ export class AuthService {
     ))
   }
 
-  signup(name:string, email:string, password: string, passwordConfirm: string, alies: string){
-    this.http.get<User>(`${this.domain}users/signup/${name}/${email}/${password}/${passwordConfirm}/${alies}`).
+  signup(name:string, email:string, password: string, passwordConfirm: string, image: string | ArrayBuffer){
+    let newUser = {
+      name,email,password,passwordConfirm,image
+    }
+    this.http.post<User>(`${this.domain}users/signup`,{newUser}).
     subscribe((user:User) => {
       this.user.next(user);
       this.currentUser = user;
-      this.router.navigate(['main'])
+      this.router.navigate(['main']) ;
+      console.log("user: ", user);
+      
     }) ;
   }
-
+  updateProfile(profileData: FormData) {
+    profileData.append('id', String(this.currentUser.id)) ;
+    return this.http.post(`${this.domain}users/updateProfile`, profileData,{
+      reportProgress: true,
+      observe: 'events'
+    })
+  }
+  
   logout() {
     this.user.next(null) ;
     this.currentUser = null ;

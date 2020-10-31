@@ -11,14 +11,22 @@ import { AuthService } from 'src/app/services/auth.service';
 export class UserInfoComponent implements OnInit {
   user: User ;
   spinner: boolean = false ;
+  imgUserUrl: string ;
   constructor(
     private authSRV: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.authSRV.user.subscribe(user => {this.user = user})
-
-  }
+    this.authSRV.user.subscribe(user => {
+      this.user = user ;
+      
+ 
+      // console.log(user);
+      // this.imgUserUrl = this.toBase64(this.user.alies) ;
+      // console.log(this.imgUserUrl);
+      // console.log("wqdqwdw");
+    })
+ }
   userLogout(){
     this.spinner = true ;
     setTimeout(() => {

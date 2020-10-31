@@ -9,6 +9,7 @@ import { ForumsListComponent } from './components/main-page/forums-list/forums-l
 import { AboutComponent } from './components/main-page/header/about/about.component';
 import { ContactComponent } from './components/main-page/header/contact/contact.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { ProfileComponent } from './components/main-page/profile/profile.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 
 
@@ -22,7 +23,8 @@ const routes: Routes = [
     {path: '', redirectTo: 'forums-list', pathMatch:'full'},
     {path: 'login', component: LoginComponent},
     {path: 'signUp', component: SignUPComponent},
-    {path: 'usersPosts', component: UserDashboardComponent}
+    {path: 'usersPosts', component: UserDashboardComponent},
+    {path: 'profile', component: ProfileComponent}
   ]},
   {path: '', redirectTo: 'main', pathMatch:'full'},
   {path: '**', redirectTo: 'main', pathMatch:'full'}

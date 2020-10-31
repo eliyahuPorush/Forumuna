@@ -17,6 +17,7 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
 import { AboutComponent } from './components/main-page/header/about/about.component'
 import { ContactComponent } from './components/main-page/header/contact/contact.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ProfileComponent } from './components/main-page/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     UserDashboardComponent,
     AboutComponent,
     ContactComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
