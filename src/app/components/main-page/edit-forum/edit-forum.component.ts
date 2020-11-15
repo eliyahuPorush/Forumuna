@@ -32,19 +32,18 @@ export class EditForumComponent implements OnInit {
   onSubmit(){
     let newForum = new Post(
       this.editForumForm.controls.title.value,
-      this.user.name,
       this.editForumForm.controls.content.value, 
       this.user.id
       ) ;
       this.postsSRV.addNewPost(newForum).
-        subscribe(data => {
-          this.errorMessage = "A new post is on the air!" ;
-          setTimeout(() => {
-          this.router.navigate([""]) ;
-          }, 2000) ;
-        },
-        error => console.log("error: ", error) 
-        )
+        subscribe(
+          // () => {
+          //   this.errorMessage = "A new post is on the air!" ;
+          //   setTimeout(() => {
+          //   this.router.navigate([""]) ;
+          //   }, 2000) ;
+          // }
+          )
   }
 
 }

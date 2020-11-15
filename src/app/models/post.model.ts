@@ -3,7 +3,6 @@ import { Answer } from './answer.model';
 export class Post{
     constructor(
         public title: string, 
-        public name: string,
         public content: string, 
         public userID: number,
         public userName?: string,

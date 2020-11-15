@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { User } from '../models/user.model';
@@ -19,7 +19,7 @@ export class AuthService {
     private router: Router
     ) { }
   login(email: string, password: string){
-    return this.http.get<User>(`${this.domain}users/login/${email}/${password}`, {headers: {"Access-Control-Allow-Origin": "*"}}).pipe(map(
+    return this.http.get<User>(`${this.domain}users/login/${email}/${password}`).pipe(map(
       data => { 
         this.user.next(data) ;
         this.currentUser = data ;
@@ -31,13 +31,11 @@ export class AuthService {
     let newUser = {
       name,email,password,passwordConfirm,image
     }
-    this.http.post<User>(`${this.domain}users/signup`,{newUser}).
+    this.http.post<User>(`${this.domain}users/signup`,newUser).
     subscribe((user:User) => {
       this.user.next(user);
       this.currentUser = user;
       this.router.navigate(['main']) ;
-      console.log("user: ", user);
-      
     }) ;
   }
   updateProfile(profileData: FormData) {

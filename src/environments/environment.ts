@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   brand: "𝔽𝕠𝕣𝕦𝕞𝕦𝕟𝕒",
-  domain: "http://localhost:3001/"
+  domain: "http://localhost:3000/"
 };
 
 /*
