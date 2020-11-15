@@ -23,13 +23,15 @@ export class ForumsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.postsSRV.getPosts().subscribe((posts: Post[]) => {
-      this.posts = posts ;
+      this.posts = posts.reverse() ;
     }); 
     this.user = this.authSRV.currentUser ;
   }
   PostClicked(post){
     this.postsSRV.postClicked.next(post) ;
-    this.router.navigate(['main','forum', post.name])
+    console.log(post);
+    
+    this.router.navigate(['main','forum', post.title])
   }
 
 }

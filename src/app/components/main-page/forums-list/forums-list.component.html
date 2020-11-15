@@ -2,8 +2,7 @@
     <div (click)="PostClicked(post)" class="card-body">
         <h5 class="card-title">{{post.title}}</h5>
         <p class="card-text">{{post.content.substr(1,100)}}...</p>
-        <p class="card-text">{{post.name}}</p> 
-        <!-- <i *ngIf="user.name == post.name">Edit</i> -->
+        <p class="card-text">{{post.userName}}</p> 
     </div>
 </div>
 

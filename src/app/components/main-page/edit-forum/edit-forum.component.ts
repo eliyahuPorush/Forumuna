@@ -37,12 +37,12 @@ export class EditForumComponent implements OnInit {
       ) ;
       this.postsSRV.addNewPost(newForum).
         subscribe(
-          // () => {
-          //   this.errorMessage = "A new post is on the air!" ;
-          //   setTimeout(() => {
-          //   this.router.navigate([""]) ;
-          //   }, 2000) ;
-          // }
+          () => {
+            this.errorMessage = "A new post is on the air!" ;
+            setTimeout(() => {
+            this.router.navigate([""]) ;
+            }, 2000) ;
+          }
           )
   }
 
