@@ -28,10 +28,11 @@
     <app-spinner *ngIf="spinner"></app-spinner>
     <div class="form-group">
         <br>
-        <div *ngIf="message" class="alert alert-success">{{message}}</div>
-        <form *ngIf="!message" (ngSubmit)="onAddAnswer()" [formGroup]="answerForm">
+        <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+        <div *ngIf="failedMessage" class="alert alert-danger">{{failedMessage}}</div>
+        <form *ngIf="!successMessage" (ngSubmit)="onAddAnswer()" [formGroup]="answerForm">
             <label class="text-primary">Your answer</label>
-            <textarea class="form-control mb-1" formControlName="answer" cols="30" rows="4"></textarea>
+            <textarea (focus)="answerAreaFocus()" class="form-control mb-1" formControlName="answer" cols="30" rows="4"></textarea>
             <button class="btn btn-info" type="submit">Send</button>
         </form>
     </div>

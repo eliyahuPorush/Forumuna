@@ -14,7 +14,8 @@ export class ForumPageComponent implements OnInit {
   post: Post ;
   answers ;
   answerForm:FormGroup ;
-  message:string ;
+  successMessage:string ;
+  failedMessage:string ;
   spinner: boolean = false ;
   constructor(
     private postsSRV: PostService,
@@ -36,16 +37,28 @@ export class ForumPageComponent implements OnInit {
   }
 
   onAddAnswer(){
-    let newAnswer = new Answer(this.authSRV.currentUser.id, this.post.id,this.answerForm.controls.answer.value) ;
-    this.postsSRV.addAnswer(newAnswer) ;
-    this.answerForm.setValue({answer:''}) ;
-    this.spinner = true ;
-    setTimeout(() => {
-      this.message = 'Your answer has been posted...' ;
-      this.spinner = false ;
-    }, 2500) ;
-    this.postsSRV.getAnswers(this.post.id).subscribe(answers => {
-      this.answers =  answers ;
-    })
+    if(this.answerForm.valid){
+      let newAnswer = new Answer(this.authSRV.currentUser.id, this.post.id,this.answerForm.controls.answer.value) ;
+      this.postsSRV.addAnswer(newAnswer) ;
+      this.answerForm.setValue({answer:''}) ;
+      this.spinner = true ;
+      setTimeout(() => {
+        this.successMessage = 'Your answer has been posted...' ;
+        this.spinner = false ;
+      }, 2500) ;
+      this.postsSRV.getAnswers(this.post.id).subscribe(answers => {
+        this.answers =  answers ;
+      })
+    }
+    else this.failedMessage = "your answer is invalid."
+  }
+
+  // input field of new answer was focus - check if user login...
+  answerAreaFocus(){
+    if(!this.authSRV.currentUser){
+      setTimeout(() => {
+        this.failedMessage = "You need to login to add your answer..." ;
+      }, 1500)
+    }
   }
 }

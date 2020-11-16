@@ -13,7 +13,7 @@ export class SignUPComponent implements OnInit {
   createAccountForm: FormGroup ;
   errorMessage ;
   spinner : boolean = false ;
-  formData: FileReader = new FileReader() ;
+  formData ;
   imageUrl: string | ArrayBuffer ;
   constructor(
     private authSRV: AuthService
@@ -37,7 +37,7 @@ export class SignUPComponent implements OnInit {
       let form = this.createAccountForm.controls ;
       this.spinner = true ;
       setTimeout(() => {
-        this.authSRV.signup(form.name.value, form.email.value, form.password.value, form.passwordConfirm.value, this.imageUrl) ;
+        this.authSRV.signup(form.name.value, form.email.value, form.password.value, form.passwordConfirm.value, this.formData) ;
       }, 2500)
     }
     else{
@@ -47,9 +47,8 @@ export class SignUPComponent implements OnInit {
   }
   onLoadImg(e){
     let image =  e.target.files[0] ;
-    this.formData = new FileReader() ;
-    this.formData.readAsDataURL(image) ;
-    this.formData.onload = e =>  {this.imageUrl = e.target.result}
+    let formData = new FormData().append('file', image, image.name) ;
+    this.authSRV.uploadImageProfile(image)  // TODO - formData dosen't work
   }
 
 }

@@ -5,6 +5,7 @@ import { User } from '../models/user.model';
 import { map } from 'rxjs/operators' ;
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import {Md5} from 'ts-md5/dist/md5'
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class AuthService {
   login(email: string, password: string){
     return this.http.get<User>(`${this.domain}users/login/${email}/${password}`).pipe(map(
       data => { 
+        
         this.user.next(data) ;
         this.currentUser = data ;
       }
@@ -44,6 +46,16 @@ export class AuthService {
       reportProgress: true,
       observe: 'events'
     })
+  }
+
+  uploadImageProfile(image){
+    console.log('image: ', image);
+    const i = new FormData().append('image', image) ;
+    this.http.post(`${this.domain}users/uploadImageProfile`, image, {reportProgress: true,  // TODO - figure out why formData dosen't work.
+      observe: 'events' }).subscribe(img => {
+      console.log('image upload: ', img);
+      
+    }) ;
   }
   
   logout() {

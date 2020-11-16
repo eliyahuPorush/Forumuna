@@ -22,7 +22,7 @@ export class PostService {
     
     
   getAnswers(postId: number) {
-      return this.http.get(`${this.domain}forums/getAnswers/${postId}`) ;
+      return this.http.get(`${this.domain}forum/getAnswers/${postId}`) ;
   }
 
   getPosts(){
@@ -32,7 +32,7 @@ export class PostService {
     return this.http.get(`${this.domain}forum/getUserPosts/${user.id}`)
   }
   addAnswer(answer: Answer) {
-      this.http.post(`${this.domain}forums/addAnswer`, answer).subscribe(response => console.log("res: ", response))  ;
+      this.http.post(`${this.domain}forum/addAnswer`, answer).subscribe(response => console.log("res: ", response))  ;
   }
 
   
