@@ -3,6 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
+
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -15,6 +20,8 @@ export class SignUPComponent implements OnInit {
   spinner : boolean = false ;
   formData ;
   imageUrl: string | ArrayBuffer ;
+
+  selectedFile: ImageSnippet ;
   constructor(
     private authSRV: AuthService
   ) { }
@@ -46,9 +53,24 @@ export class SignUPComponent implements OnInit {
   
   }
   onLoadImg(e){
-    let image =  e.target.files[0] ;
-    let formData = new FormData().append('file', image, image.name) ;
-    this.authSRV.uploadImageProfile(image)  // TODO - formData dosen't work
+    // let image =  e.target.files[0] ;
+    // let formData = new FormData().append('file', image, image.name) ;
+    // this.authSRV.uploadImageProfile(image)  // TODO - formData dosen't work
+
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+      this.authSRV.uploadImageProfile(this.selectedFile.file).subscribe(
+        (res) => {
+          console.log('image upload: ', res);
+          
+        })
+    });
+
+    reader.readAsDataURL(file);
   }
 
 }

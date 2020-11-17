@@ -49,13 +49,11 @@ export class AuthService {
   }
 
   uploadImageProfile(image){
-    console.log('image: ', image);
-    const i = new FormData().append('image', image) ;
-    this.http.post(`${this.domain}users/uploadImageProfile`, image, {reportProgress: true,  // TODO - figure out why formData dosen't work.
-      observe: 'events' }).subscribe(img => {
-      console.log('image upload: ', img);
-      
-    }) ;
+    const formData = new FormData();
+
+    formData.append('image', image);
+    return this.http.post(`${this.domain}users/uploadImageProfile`, formData)  // TODO - figure out why formData dosen't work.
+
   }
   
   logout() {
