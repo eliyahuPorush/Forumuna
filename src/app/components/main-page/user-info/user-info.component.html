@@ -2,10 +2,10 @@
     <div class="card bg-light user-details">
         <img 
             class="card-img-top" 
-            src="http://localhost:3001/users/getPosts"
+            src="{{user.profileImagePath}}" 
         >
         <div class="ml-2 card-title">
-            <h2>Welcome Back {{user.name}}</h2>
+            <h2>Welcome {{user.name}}</h2>
             <p>{{user.email}}</p>
         </div>
         <div class="card-body">

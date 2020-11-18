@@ -19,12 +19,6 @@ export class UserInfoComponent implements OnInit {
   ngOnInit(): void {
     this.authSRV.user.subscribe(user => {
       this.user = user ;
-      
- 
-      // console.log(user);
-      // this.imgUserUrl = this.toBase64(this.user.alies) ;
-      // console.log(this.imgUserUrl);
-      // console.log("wqdqwdw");
     })
  }
   userLogout(){
