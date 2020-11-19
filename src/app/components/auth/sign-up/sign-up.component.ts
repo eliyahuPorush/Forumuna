@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 
@@ -23,7 +24,8 @@ export class SignUPComponent implements OnInit {
 
   selectedFile: ImageSnippet ;
   constructor(
-    private authSRV: AuthService
+    private authSRV: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +37,10 @@ export class SignUPComponent implements OnInit {
       image: new FormControl(null),
     })
   }
-  // need to add validation
+
+
+  // this.authSRV.uploadImageProfile(this.selectedFile.file, this.createAccountForm.controls.email.value)
+
   onSubmit(){
     if( // check if form is valid and password equal to passwordConfirm
       this.createAccountForm.valid && 
@@ -44,16 +49,28 @@ export class SignUPComponent implements OnInit {
       let form = this.createAccountForm.controls ;
       this.spinner = true ;
       setTimeout(() => {
-          this.authSRV.signup(form.name.value, form.email.value, form.password.value, form.passwordConfirm.value, this.formData).subscribe(() => {
-            this.authSRV.uploadImageProfile(this.selectedFile.file, this.createAccountForm.controls.email.value).subscribe()
+        this.authSRV.signup(form.name.value, form.email.value, form.password.value, form.passwordConfirm.value, this.formData).subscribe(() => {
+          this.authSRV.uploadImageProfile(this.selectedFile.file, this.createAccountForm.controls.email.value)
+          this.router.navigate(['main'])
           })
       }, 500)
     }
+
+
+
     else{
       this.errorMessage = 'One of your details is incorrect!' ;
     }
   
   }
+
+
+
+
+
+
+
+
   onLoadImg(e){
     const file = e.target.files[0];
     const reader = new FileReader();

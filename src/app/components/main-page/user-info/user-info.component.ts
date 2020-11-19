@@ -26,7 +26,7 @@ export class UserInfoComponent implements OnInit {
     setTimeout(() => {
       this.authSRV.logout() ;
       this.spinner = false ;
-    }, 3000)
+    }, 500)
   }
 
 }

@@ -47,7 +47,6 @@ export class AuthService {
       pipe(map((user:User) => {
         this.user.next(user);
         this.currentUser = user;
-        this.router.navigate(['main']) ;
     })) ;
   }
   updateProfile(profileData: FormData) {
@@ -59,9 +58,12 @@ export class AuthService {
   }
 
   uploadImageProfile(image, userEmail){
-    const formData = new FormData();
-    formData.append('image', image);
-    return this.http.post(`${this.domain}users/uploadImageProfile/${userEmail}`, formData) 
+    setTimeout(() =>{
+      const formData = new FormData();
+      formData.append('image', image);
+      this.http.post(`${this.domain}users/uploadImageProfile/${userEmail}`, formData).subscribe() ;
+    },3000)
+
   }
   
   logout() {
