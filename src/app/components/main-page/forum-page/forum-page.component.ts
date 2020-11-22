@@ -4,6 +4,7 @@ import { Answer } from 'src/app/models/answer.model';
 import { Post } from 'src/app/models/post.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-forum-page',
@@ -17,6 +18,7 @@ export class ForumPageComponent implements OnInit {
   successMessage:string ;
   failedMessage:string ;
   spinner: boolean = false ;
+  domain:string = environment.domain ;
   constructor(
     private postsSRV: PostService,
     private authSRV: AuthService
@@ -25,6 +27,8 @@ export class ForumPageComponent implements OnInit {
   ngOnInit(): void {
     this.postsSRV.postClicked.subscribe((post:Post) => {
       this.post = post ;
+      console.log('post: ', post);
+      
     })
       this.postsSRV.getAnswers(this.post.id).subscribe(answers => {
         this.answers =  answers ;

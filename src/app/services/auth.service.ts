@@ -32,7 +32,6 @@ export class AuthService {
     return this.http.get<User>(`${this.domain}users/login/${email}/${password}`).pipe(map(
       data => { 
         localStorage.setItem('forumuna user token',data['token'])  // insert token to local storage
-        this.getUserImage(data['token']).subscribe(img => this.convertImageToUrl(img))
         this.user.next(data) ;
         this.currentUser = data ;
       }
@@ -76,16 +75,16 @@ export class AuthService {
     return this.http.get<User>(`${this.domain}users/getUserByToken/${token}`)
   }
 
-  getUserImage(token){
-    return this.http.get(`${this.domain}users/getProfileImage/${token}`,{ responseType: 'blob'}) 
-  }
+  // getUserImage(token){
+  //   return this.http.get(`${this.domain}users/getProfileImage/${token}`,{ responseType: 'blob'}) 
+  // }
 
-  convertImageToUrl(image){
-    const fileReader = new FileReader() ;
-    fileReader.onload = e =>{
-    this.currentUser.profileImagePath = e.target.result as string ;
-    }
-    fileReader.readAsDataURL(image) ;
-  }
+  // convertImageToUrl(image){
+  //   const fileReader = new FileReader() ;
+  //   fileReader.onload = e =>{
+  //   this.currentUser.profileImagePath = e.target.result as string ;
+  //   }
+  //   fileReader.readAsDataURL(image) ;
+  // }
 
 }

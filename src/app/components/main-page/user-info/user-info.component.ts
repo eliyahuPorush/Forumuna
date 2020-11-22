@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { environment } from 'src/environments/environment' ;
+ 
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
@@ -12,12 +12,16 @@ export class UserInfoComponent implements OnInit {
   user: User ;
   spinner: boolean = false ;
   imgUserUrl: string ;
+  domain: string = environment.domain ;
   constructor(
     private authSRV: AuthService
   ) { }
 
   ngOnInit(): void {
     this.authSRV.user.subscribe(user => {
+      if(!!user){
+        user.profileImagePath = this.domain + user.profileImagePath ;
+      }
       this.user = user ;
     })
  }
