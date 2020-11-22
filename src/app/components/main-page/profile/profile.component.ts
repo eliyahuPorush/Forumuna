@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup ;
   errorMessage: string ;
+  successMessage: string ;
   imgPath: string ;
   imageLoaded: File ;
 
@@ -22,7 +23,10 @@ export class ProfileComponent implements OnInit {
       name: new FormControl(this.authSRV.currentUser.name, [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
       email: new FormControl(this.authSRV.currentUser.email, [Validators.required, Validators.email]),
     }) ;
-    this.imgPath =  this.authSRV.currentUser.profileImagePath
+    this.imgPath =  this.authSRV.currentUser.profileImagePath ;
+
+    
+    
   }
 
 onSubmit(){
@@ -35,10 +39,9 @@ onSubmit(){
     formData.append('name', controlers.name.value )
     formData.append('email', controlers.email.value )
     console.log("formData: ", formData.getAll);
-    this.authSRV.updateProfile(formData).subscribe(
-      e => console.log(e)
-    )
-  
+    this.authSRV.updateProfile(formData).subscribe() ;
+    this.successMessage = "Profile updated successfully"
+
 }
 }
 onImgSelected(event){
