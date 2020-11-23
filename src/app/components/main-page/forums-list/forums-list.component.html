@@ -1,11 +1,12 @@
+<br>
 <div *ngFor="let post of posts" class="card mt-2 container">
     <div (click)="PostClicked(post)" class="card-body row">
-        <div class="col-4">
+        <div class="col-2 d-flex align-items-center">
+            <!-- <p class="card-text">{{post['user'].name}}</p>  -->
             <img src="{{post['user']['profileImagePath']}}" class="card-image" alt="">
-            <p class="card-text">{{post.dateCreated}}</p>
         </div>
-        <div class="col-8">
-            <p class="card-text">{{post['user'].name}}</p> 
+        <div class="col-5">
+            <p class="card-text">{{post.dateCreated}}</p>
             <h5 class="card-title">{{post.title}}</h5>
             <p class="card-text">{{post.content.substr(1,100)}}...</p>
         </div>

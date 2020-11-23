@@ -35,10 +35,19 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       if(this.loginForm.valid){
         this.authSRV.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value).subscribe(
-          user => { this.router.navigate([''])}
+          user => { 
+            this.router.navigate([''])
+            console.log('user=== ', user);
+            
+          }, 
+          error => {
+            this.errorMessage = "Email or password not correct" ;
+            this.spinner = false ;
+          }
         )}
       else{
         this.errorMessage = 'one of the fields is not valid... please try again' ;
+        this.spinner = false ;
       }
     }, 2000)
 

@@ -6,11 +6,11 @@
 }
 .card{
     background-color: rgb(174, 179, 179) ;
-    padding: 0.1% ;
+    
 }
 
 .card-image{
     width: 80px ;
     height: 80px;
-    border-radius: 25% ;
+    border-radius: 50% ;
 }
