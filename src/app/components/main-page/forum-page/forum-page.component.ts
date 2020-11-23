@@ -65,4 +65,8 @@ export class ForumPageComponent implements OnInit {
       }, 1500)
     }
   }
+
+  onLikePress(){
+    this.postsSRV.addLike(this.post.id)
+  }
 }

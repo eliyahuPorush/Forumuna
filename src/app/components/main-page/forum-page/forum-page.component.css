@@ -24,3 +24,7 @@ img{
 .user-image{
     border-radius: 50%;
 }
+.like-icon:hover{
+    /* background-color: rgb(53, 108, 121); */
+ 
+}
