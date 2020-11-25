@@ -28,3 +28,7 @@ img{
     /* background-color: rgb(53, 108, 121); */
  
 }
+
+.invisibleButton{
+    display: none ;
+}

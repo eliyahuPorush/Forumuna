@@ -19,6 +19,7 @@ export class ForumPageComponent implements OnInit {
   failedMessage:string ;
   spinner: boolean = false ;
   domain:string = environment.domain ;
+  user ;
   constructor(
     private postsSRV: PostService,
     private authSRV: AuthService
@@ -38,6 +39,8 @@ export class ForumPageComponent implements OnInit {
     this.answerForm = new FormGroup({
       answer: new FormControl(null, Validators.required)
     })
+
+    this.user = this.authSRV.currentUser ;
   }
 
   onAddAnswer(){
@@ -67,6 +70,6 @@ export class ForumPageComponent implements OnInit {
   }
 
   onLikePress(){
-    this.postsSRV.addLike(this.post.id)
+      this.postsSRV.addLike(this.post.id)
   }
 }

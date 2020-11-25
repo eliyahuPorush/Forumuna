@@ -61,7 +61,10 @@ export class PostService {
     
     
     addLike(postId: number) {
-      this.http.post(`${this.domain}forum/addLike`,{postId},{headers: {'token': this.getToken()}}).subscribe() ; 
+      this.http.post(`${this.domain}forum/addLike`,{postId},{headers: {'token': this.getToken()}}).subscribe(
+        r => console.log(r),
+        err => console.log("error", err.error)
+      ) ; 
     }
     
   }
