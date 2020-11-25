@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Post } from 'src/app/models/post.model';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { PostService } from 'src/app/services/post.service';
 import { environment } from 'src/environments/environment' ;
  
 @Component({
@@ -14,7 +16,8 @@ export class UserInfoComponent implements OnInit {
   imgUserUrl: string ;
   domain: string = environment.domain ;
   constructor(
-    private authSRV: AuthService
+    private authSRV: AuthService,
+    private postsSRV: PostService,
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +27,7 @@ export class UserInfoComponent implements OnInit {
       }
       this.user = user ;
     })
+
  }
   userLogout(){
     this.spinner = true ;

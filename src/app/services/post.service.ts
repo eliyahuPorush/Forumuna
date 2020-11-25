@@ -29,7 +29,7 @@ export class PostService {
       return this.http.get(`${this.domain}forum/getPosts`).pipe(map(posts =>  this.addDomainToImagePath(posts)))
     }
     getUsersPosts(user: User){
-      return this.http.get(`${this.domain}forum/getUserPosts/${user.id}`)
+      return this.http.get(`${this.domain}forum/getUserPosts/${user.id}`, { headers: {'token': this.getToken()}})
     }
     addAnswer(answer: Answer) {
       this.http.post(`${this.domain}forum/addAnswer`, answer).subscribe(response => console.log("res: ", response))  ;

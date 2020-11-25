@@ -60,7 +60,7 @@ export class AuthService {
     setTimeout(() =>{
       const formData = new FormData();
       formData.append('image', image);
-      this.http.post(`${this.domain}users/uploadImageProfile/${userEmail}`, formData).subscribe() ;
+      this.http.post(`${this.domain}users/uploadImageProfile/${userEmail}`, formData,  { headers: {'token': this.currentUser['token']}}).subscribe() ;
     },3000)
 
   }
