@@ -18,6 +18,7 @@ import { AboutComponent } from './components/main-page/header/about/about.compon
 import { ContactComponent } from './components/main-page/header/contact/contact.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ProfileComponent } from './components/main-page/profile/profile.component';
+import { OtherUserDetailsComponent } from './components/main-page/other-user-details/other-user-details.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ProfileComponent } from './components/main-page/profile/profile.compone
     AboutComponent,
     ContactComponent,
     SpinnerComponent,
-    ProfileComponent
+    ProfileComponent,
+    OtherUserDetailsComponent
   ],
   imports: [
     BrowserModule,

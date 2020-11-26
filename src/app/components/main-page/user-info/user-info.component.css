@@ -17,3 +17,7 @@
     max-width: 100px;
     border-radius: 50% ;
 }
+
+.new-msg{
+    cursor: pointer;
+}

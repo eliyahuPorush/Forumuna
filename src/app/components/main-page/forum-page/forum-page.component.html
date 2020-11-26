@@ -1,7 +1,7 @@
 <div class="card mt-3 forum-self">
     <div class="card-header d-flex bg-white">
         <div>
-            <img src="{{post['user'].profileImagePath}}" class="user-image" alt="">
+            <img src="{{post['user'].profileImagePath}}" class="user-image" alt="" (click)="onUserClick(post['user']['id'])">
         </div>
         <div>
             <h6 class="card-title text-primary">{{post['user'].name}}</h6>
@@ -27,7 +27,7 @@
     <div class="mt-2 ml-3 row">
         <div class="col-sm-1">
             <h6 class="text-primary">{{answer.user.name}}</h6>
-            <img src="{{answer.user.profileImagePath}}" class="user-image" alt="">
+            <img src="{{answer.user.profileImagePath}}" class="user-image" alt="" (click)="onUserClick(answer['user']['id'])">
             <p>{{answer.dateCreated}}</p>
         </div>
         <div class="col-sm-3 d-flex align-items-end">

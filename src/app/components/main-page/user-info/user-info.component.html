@@ -8,6 +8,7 @@
             <h2>Welcome {{user.name}}</h2>
             <p>{{user.email}}</p>
             <p>Posts that you publish: {{user['numberOfPosts']}}</p>
+            <a class="new-msg">{{messages.length}} private messages you didn't read</a> 
         </div>
         <div class="card-body">
             <button class="btn btn-outline-secondary btn-sm mr-1" [routerLink]="['/login']" (click)="userLogout()">Log Out</button>

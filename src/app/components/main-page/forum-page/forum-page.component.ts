@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Answer } from 'src/app/models/answer.model';
 import { Post } from 'src/app/models/post.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -22,7 +23,8 @@ export class ForumPageComponent implements OnInit {
   user ;
   constructor(
     private postsSRV: PostService,
-    private authSRV: AuthService
+    private authSRV: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -71,5 +73,9 @@ export class ForumPageComponent implements OnInit {
 
   onLikePress(){
       this.postsSRV.addLike(this.post.id)
+  }
+
+  onUserClick(userId: number){
+    this.router.navigate(['main', 'otherUserDetails', userId])
   }
 }

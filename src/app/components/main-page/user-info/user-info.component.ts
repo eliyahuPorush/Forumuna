@@ -3,6 +3,7 @@ import { Post } from 'src/app/models/post.model';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
+import { PrivateMessageService } from 'src/app/services/privateMessages.service';
 import { environment } from 'src/environments/environment' ;
  
 @Component({
@@ -15,13 +16,13 @@ export class UserInfoComponent implements OnInit {
   spinner: boolean = false ;
   imgUserUrl: string ;
   domain: string = environment.domain ;
+  messages;
   constructor(
     private authSRV: AuthService,
-    private postsSRV: PostService,
   ) { }
 
-  ngOnInit(): void {
-    this.authSRV.user.subscribe(user => {
+  async ngOnInit(): Promise<void> {
+    this.authSRV.user.subscribe(async user => {
       if(!!user){
         user.profileImagePath = this.domain + user.profileImagePath ;
       }

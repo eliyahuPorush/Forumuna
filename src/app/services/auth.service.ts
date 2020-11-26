@@ -5,6 +5,7 @@ import { User } from '../models/user.model';
 import { map } from 'rxjs/operators' ;
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { PrivateMessageService } from './privateMessages.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthService {
   errorMessage = new Subject<string>();
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
     ) {
       // get token from local storage if it exists and signin with
       const token = localStorage.getItem('forumuna user token') ;
@@ -34,6 +35,7 @@ export class AuthService {
         localStorage.setItem('forumuna user token',data['token'])  // insert token to local storage
         this.user.next(data) ;
         this.currentUser = data ;
+        
       }
     ))
   }
@@ -75,16 +77,9 @@ export class AuthService {
     return this.http.get<User>(`${this.domain}users/getUserByToken/${token}`)
   }
 
-  // getUserImage(token){
-  //   return this.http.get(`${this.domain}users/getProfileImage/${token}`,{ responseType: 'blob'}) 
-  // }
 
-  // convertImageToUrl(image){
-  //   const fileReader = new FileReader() ;
-  //   fileReader.onload = e =>{
-  //   this.currentUser.profileImagePath = e.target.result as string ;
-  //   }
-  //   fileReader.readAsDataURL(image) ;
-  // }
+  getOtherUserDetails(userID: number){
+    return this.http.get<User>(`${this.domain}users/getOtherUserDetails/${userID}`) ;
+  }
 
 }
