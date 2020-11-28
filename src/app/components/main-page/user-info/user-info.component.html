@@ -1,5 +1,5 @@
 <div *ngIf="!!user">
-    <div class="card bg-light user-details">
+    <div class="card bg-light user-details mt-4">
         <img 
             class="card-img-top" 
             src="{{user.profileImagePath}}" 
@@ -7,6 +7,8 @@
         <div class="ml-2 card-title">
             <h2>Welcome {{user.name}}</h2>
             <p>{{user.email}}</p>
+            <p>Posts that you publish: {{user['numberOfPosts']}}</p>
+            <a *ngIf="unreadMessagesNumber" class="new-msg">{{unreadMessagesNumber}} private messages you didn't read</a> 
         </div>
         <div class="card-body">
             <button class="btn btn-outline-secondary btn-sm mr-1" [routerLink]="['/login']" (click)="userLogout()">Log Out</button>

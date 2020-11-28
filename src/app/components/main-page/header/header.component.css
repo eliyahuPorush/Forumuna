@@ -1,14 +1,8 @@
 .navbar-brand{
     font-size: 1.8rem ;
 }
-.user-name{
-    width: 10vw ;
-}
 .navbar{
     background-color: rgb(53, 108, 121);
-}
-.nav-link{
-    color: white;
 }
 .nav-link:hover{
     color: black;
@@ -16,20 +10,7 @@
 a{
     cursor: pointer;
 }
-/* body {
-    margin: 0;
-    padding: 0;
-} */
 
-a.navbar-brand {
-    float: left;
-    height: 50px;
-    padding: 15px 15px;
-    line-height: 20px;
-    text-decoration: none;
-    font-weight: 700;
-
-}
 
 nav.main-navigation {
     position: relative;
@@ -47,7 +28,7 @@ nav.main-navigation ul.nav-list {
     display: inline-block;
     line-height: 40px;
     margin-left: 30px;
-    margin-top: 15px;
+    
 }
 
 a.nav-link {
