@@ -4,10 +4,6 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 
-class ImageSnippet {
-  constructor(public src: string, public file: File) {}
-}
-
 
 @Component({
   selector: 'app-sign-up',
@@ -21,8 +17,9 @@ export class SignUPComponent implements OnInit {
   spinner : boolean = false ;
   formData ;
   imageUrl: string | ArrayBuffer ;
+  selectedFile: File ;
 
-  selectedFile: ImageSnippet ;
+
   constructor(
     private authSRV: AuthService,
     private router: Router
@@ -50,32 +47,21 @@ export class SignUPComponent implements OnInit {
       this.spinner = true ;
       setTimeout(() => {
         this.authSRV.signup(form.name.value, form.email.value, form.password.value, form.passwordConfirm.value, this.formData).subscribe(() => {
-          this.authSRV.uploadImageProfile(this.selectedFile.file, this.createAccountForm.controls.email.value)
+          this.authSRV.uploadImageProfile(this.selectedFile, this.createAccountForm.controls.email.value)
           this.router.navigate(['main'])
           })
       }, 500)
     }
-
-
-
     else{
       this.errorMessage = 'One of your details is incorrect!' ;
     }
   
   }
-
-
-
-
-
-
-
-
   onLoadImg(e){
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.addEventListener('load', (event: any) => {
-      this.selectedFile = new ImageSnippet(event.target.result, file);
+      this.selectedFile = file;
     });
     reader.readAsDataURL(file);
   }
