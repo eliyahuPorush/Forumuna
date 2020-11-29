@@ -9,7 +9,7 @@ import { PrivateMessage } from '../models/privateMessage.model';
   })
   export class PrivateMessageService {
     domain : string = environment.domain ;
-    messages: PrivateMessage[] = [] ;
+    messages: BehaviorSubject<PrivateMessage[]> = new BehaviorSubject<PrivateMessage[]>(null);
     unreadMessages: BehaviorSubject<PrivateMessage[]> = new BehaviorSubject<PrivateMessage[]>(null);
     unreadMessagesNumber: BehaviorSubject<number> = new BehaviorSubject<number>(null);
 
@@ -32,5 +32,14 @@ import { PrivateMessage } from '../models/privateMessage.model';
           })
 
       }
+
+      getAllMessages(userId: number){
+        return this.http.get<PrivateMessage[]>(`${this.domain}private-message/getAllMessages/${userId}`)
+
+    }
+
+    setMessageReaded(userId: number){
+      return this.http.put(`${this.domain}private-message/setAllMessageReaded/${userId}`, {}).subscribe()
+    }
 
   }

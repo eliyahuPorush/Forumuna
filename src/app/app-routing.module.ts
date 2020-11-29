@@ -10,6 +10,7 @@ import { AboutComponent } from './components/main-page/header/about/about.compon
 import { ContactComponent } from './components/main-page/header/contact/contact.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { OtherUserDetailsComponent } from './components/main-page/other-user-details/other-user-details.component';
+import { PrivateMessagesListComponent } from './components/main-page/private-messages-list/private-messages-list.component';
 import { ProfileComponent } from './components/main-page/profile/profile.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 
@@ -26,7 +27,8 @@ const routes: Routes = [
     {path: 'signUp', component: SignUPComponent},
     {path: 'usersPosts', component: UserDashboardComponent},
     {path: 'profile', component: ProfileComponent},
-    {path: 'otherUserDetails/:userID', component: OtherUserDetailsComponent}
+    {path: 'otherUserDetails/:userID', component: OtherUserDetailsComponent},
+    {path: 'private-messages-list', component: PrivateMessagesListComponent}
   ]},
   {path: '', redirectTo: 'main', pathMatch:'full'},
   {path: '**', redirectTo: 'main', pathMatch:'full'}

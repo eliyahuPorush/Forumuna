@@ -19,6 +19,7 @@ import { ContactComponent } from './components/main-page/header/contact/contact.
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ProfileComponent } from './components/main-page/profile/profile.component';
 import { OtherUserDetailsComponent } from './components/main-page/other-user-details/other-user-details.component';
+import { PrivateMessagesListComponent } from './components/main-page/private-messages-list/private-messages-list.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { OtherUserDetailsComponent } from './components/main-page/other-user-det
     ContactComponent,
     SpinnerComponent,
     ProfileComponent,
-    OtherUserDetailsComponent
+    OtherUserDetailsComponent,
+    PrivateMessagesListComponent
   ],
   imports: [
     BrowserModule,
