@@ -45,7 +45,7 @@ export class OtherUserDetailsComponent implements OnInit {
 
   onSubmit(){
     if(this.privateMessageForm.valid){
-      this.privateMSGSRV.addPrivateMessage(this.otherUserDetails.id, this.privateMessageForm.controls.messageContent.value) ;
+      this.privateMSGSRV.addPrivateMessage(this.otherUserDetails.id,this.authSRV.currentUser.id, this.privateMessageForm.controls.messageContent.value) ;
       this.privateMessageForm.reset() ;
       this.displaySendMessageArea = false ;
       this.successMessage = "Your message has been sent." ;

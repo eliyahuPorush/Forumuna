@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators' ;
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { PrivateMessageService } from './privateMessages.service';
+import { PrivateMessage } from '../models/privateMessage.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,23 +19,28 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private privateMSGSRV: PrivateMessageService
     ) {
       // get token from local storage if it exists and signin with
       const token = localStorage.getItem('forumuna user token') ;
       if(token){
         this.getUserByToken(token).subscribe(user => {
-          this.login(user.email, user['password']).subscribe(() => {this.router.navigate([''])})
+          this.login(user.email, user['password']).subscribe(() => {
+            this.router.navigate([''])
+          })
         }) ;
       }
-     }
+    }
+    
+    
+    login(email: string, password: string){
+      return this.http.get<User>(`${this.domain}users/login/${email}/${password}`).pipe(map(
+        async data => { 
+          localStorage.setItem('forumuna user token',data['token'])  // insert token to local storage
+          this.user.next(data) ;
+          this.currentUser = data ;
+          await this.privateMSGSRV.getUnreadedMessages(data.id) ;
 
-
-  login(email: string, password: string){
-    return this.http.get<User>(`${this.domain}users/login/${email}/${password}`).pipe(map(
-      data => { 
-        localStorage.setItem('forumuna user token',data['token'])  // insert token to local storage
-        this.user.next(data) ;
-        this.currentUser = data ;
         
       }
     ))

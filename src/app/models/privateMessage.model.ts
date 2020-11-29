@@ -1,5 +1,7 @@
 export class PrivateMessage{
     constructor(
-        // public 
+        public idSender: number,
+        public idReceiver: number, 
+        public content: string
     ){}
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post.model';
+import { PrivateMessage } from 'src/app/models/privateMessage.model';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
@@ -16,9 +17,10 @@ export class UserInfoComponent implements OnInit {
   spinner: boolean = false ;
   imgUserUrl: string ;
   domain: string = environment.domain ;
-  messages;
+  unreadMessagesNumber: number = 0 ;
   constructor(
     private authSRV: AuthService,
+    private PrivateMSGSRV: PrivateMessageService
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -28,7 +30,7 @@ export class UserInfoComponent implements OnInit {
       }
       this.user = user ;
     })
-
+    this.PrivateMSGSRV.unreadMessagesNumber.subscribe(number => this.unreadMessagesNumber = number)
  }
   userLogout(){
     this.spinner = true ;
