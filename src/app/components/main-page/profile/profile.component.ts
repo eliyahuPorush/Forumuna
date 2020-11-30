@@ -22,6 +22,8 @@ export class ProfileComponent implements OnInit {
     this.profileForm = new FormGroup({
       name: new FormControl(this.authSRV.currentUser.name, [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
       email: new FormControl(this.authSRV.currentUser.email, [Validators.required, Validators.email]),
+      currentPassword: new FormControl(null),
+      newPassword: new FormControl(null)
     }) ;
     this.imgPath =  this.authSRV.currentUser.profileImagePath ;
 
@@ -29,18 +31,16 @@ export class ProfileComponent implements OnInit {
     
   }
 
-onSubmit(){
+  async onSubmit(){
   if(this.profileForm.valid){
-    // send image 
-    this.authSRV.uploadImageProfile(this.imageLoaded, this.authSRV.currentUser.email);
-
-    let controlers = this.profileForm.controls ;
-    let formData = new FormData() ;
-    formData.append('name', controlers.name.value )
-    formData.append('email', controlers.email.value )
-    console.log("formData: ", formData.getAll);
-    this.authSRV.updateProfile(formData).subscribe() ;
-    this.successMessage = "Profile updated successfully"
+    //send image 
+    await this.authSRV.uploadImageProfile(this.imageLoaded, this.authSRV.currentUser.email);
+    let data = this.profileForm.value ;
+    await this.authSRV.updateProfile(data).subscribe(
+       user=> {
+        this.successMessage = "Profile updated successfully"
+      }
+    ) ;
 
 }
 }

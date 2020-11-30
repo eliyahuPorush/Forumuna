@@ -9,6 +9,14 @@
                 <label for="title">Email</label>
                 <input type="text" formControlName="email" class="form-control">
             </div>
+            <div class="form-group">
+                <label for="title">Current Password</label>
+                <input type="text" formControlName="currentPassword" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="title">New Password</label>
+                <input type="text" formControlName="newPassword" class="form-control">
+            </div>
             <div class="form-group" [ngClass]="{'image-upload': !imgPath.includes('null')}">
                 <label for="file-input">
                     <img class="profile-image" src="{{imgPath}}" alt="">

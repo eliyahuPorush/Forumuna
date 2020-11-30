@@ -56,21 +56,33 @@ export class AuthService {
         this.currentUser = user;
     })) ;
   }
-  updateProfile(profileData: FormData) {
-    profileData.append('id', String(this.currentUser.id)) ;
-    return this.http.post(`${this.domain}users/updateProfile`, profileData,{
+  updateProfile(data) {
+    data['id'] = this.currentUser.id ;
+    return this.http.post<User>(`${this.domain}users/updateProfile`, data,{
       reportProgress: true,
-      observe: 'events'
-    })
+      observe: 'events',
+      headers: {token: this.currentUser['token']}
+    }).pipe(map(
+      user => {
+        this.currentUser = user['body'];
+        this.user.next(this.currentUser);
+      })
+    ) 
   }
 
   uploadImageProfile(image, userEmail){
-    setTimeout(() =>{
       const formData = new FormData();
       formData.append('image', image);
-      this.http.post(`${this.domain}users/uploadImageProfile/${userEmail}`, formData,  { headers: {'token': this.currentUser['token']}}).subscribe() ;
-    },3000)
-
+      this.http.post(
+        `${this.domain}users/uploadImageProfile/${userEmail}`, 
+        formData,  
+        { headers: {
+            'token': this.currentUser['token'],
+          }})
+    .subscribe(p => {
+        this.currentUser.profileImagePath = p['path'] ;
+        this.user.next(this.currentUser) ;
+      }) ;
   }
   
   logout() {
